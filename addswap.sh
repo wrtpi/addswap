@@ -143,38 +143,29 @@ main() {
   _green "1, Add swap${Font}"
   _green "2, Remove swap${Font}"
   echo -e "—————————————————————————————————————————————————————————————"
-  while true; do
-    _green "Please enter a number"
-    reading "请输入数字 [1-2]:" num
-    case "$num" in
+  
+  if [[ ! -z "$1" ]]; then
+    num="$1"
+  else
+    while true; do
+      _green "Please enter a number"
+      reading "请输入数字 [1-2]:" num
+      if [[ "$num" =~ ^[1-2]$ ]]; then
+        break
+      else
+        echo "输入错误，请重新输入"
+      fi
+    done
+  fi
+  
+  case "$num" in
     1)
       add_swap
-      break
       ;;
     2)
       del_swap
-      break
       ;;
-    *)
-      echo "输入错误，请重新输入"
-      ;;
-    esac
-  done
+  esac
 }
 
-check_swap() {
-  check_root
-  check_virt
-  if [ $VIRT = "openvz" ]; then
-    NEW="$((SWAP * 1024))"
-    TEMP="${NEW//?/ }"
-    OLD="${TEMP:1}0"
-    umount /proc/meminfo 2>/dev/null
-    sed "/^Swap\(Total\|Free\):/s,$OLD,$NEW," /proc/meminfo >/etc/fake_meminfo
-    mount --bind /etc/fake_meminfo /proc/meminfo
-  fi
-  sleep 1
-  exit 1
-}
-
-main
+main "$@"
