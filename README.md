@@ -3,12 +3,12 @@
 更新时间：2024.1.15
 
 ```bash
-echo -e "1\n1024" | curl -L https://raw.githubusercontent.com/spiritLHLS/addswap/main/addswap.sh -o addswap.sh && chmod +x addswap.sh && bash addswap.sh
+echo -e "1\n1024" | curl -L https://raw.githubusercontent.com/wrtpi/addswap/main/addswap.sh -o addswap.sh && chmod +x addswap.sh && bash addswap.sh
 ```
 为openvz、kvm虚拟化的linux服务器增加swap分区(虚拟内存)
 
 ```bash
-curl -L https://raw.githubusercontent.com/spiritLHLS/addswap/main/addswap.sh -o addswap.sh && chmod +x addswap.sh && bash addswap.sh
+curl -L https://raw.githubusercontent.com/wrtpi/addswap/main/addswap.sh -o addswap.sh && chmod +x addswap.sh && bash addswap.sh
 ```
 
 已增加openvz架构重启swap自动添加的
